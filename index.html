@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 9]>      <html lang="en" class="ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
 <head>
     <meta charset="UTF-8">
     <title>Urlaubsgl&uuml;ck</title>
     <link rel="stylesheet" href="dist/css/main.min.css">
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="dist/css/main.ie8.min.css">
+    <script src="dist/js/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
-    <header class="header">
+    <div class="header">
         <div class="container">
             <div class="header__user">
                 <a href="#" class="header__login">Log in</a>
@@ -23,8 +28,8 @@
                 </div>
             </div>
         </div>
-    </header>
-    <main class="main">
+    </div>
+    <div class="main">
         <div class="container">
             <div class="howto">
                 <h2 class="howto__title">How Urlaubsgl&uuml;ck works?</h2>
@@ -199,8 +204,8 @@
                 </div>
             </div>
         </div>
-    </main>
-    <footer class="footer">
+    </div>
+    <div class="footer">
         <div class="container">
             <div class="footer__columns">
                 <div class="footer__column">
@@ -230,7 +235,16 @@
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+
+    <!--[if lt IE 9]>
+    <script src="dist/js/jquery-1.11.3.min.js"></script>
+    <script src="dist/js/script.js"></script>
+    <![endif]-->
+
+    <!--[if gt IE 8]><!-->
     <script src="dist/js/script.main.min.js"></script>
+    <!--<![endif]-->
+
 </body>
 </html>

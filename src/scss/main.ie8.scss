@@ -1,0 +1,71 @@
+// Breakpoints
+$lg: 1440px;
+$md: 960px;
+$sm: 768px;
+$xs: $sm - 1px;
+$min: 320px;
+@mixin bp($class) {
+    @if $class == xs {
+        @media (max-width: $xs) { @content; }
+    }
+
+    @else if $class == sm {
+        @media (min-width: $sm) { @content; }
+    }
+
+    @else if $class == md {
+        @media (min-width: $md) { @content; }
+    }
+
+    @else if $class == lg {
+        @media (min-width: $lg) { @content; }
+    }
+
+    @else {
+        @warn "Breakpoint mixin supports: xs, sm, md, lg";
+    }
+}
+
+.meet {
+    clear: both;
+
+    &__img {
+        position: static;
+    }
+
+    &__more {
+        clear: both;
+    }
+}
+
+.discover {
+    clear: both;
+
+    &__activities {
+        margin: 0 -10px;
+        clear: both;
+    }
+
+    &__activity {
+        float: left;
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+        @include bp(sm) {
+            width: 33.3333%;
+        }
+    }
+
+    &__image {
+        min-height: 300px;
+    }
+
+    &__img {
+        max-width: 100%;
+    }
+
+    &__search {
+        clear: both;
+    }
+}

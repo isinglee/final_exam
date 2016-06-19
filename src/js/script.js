@@ -26,6 +26,9 @@ $(function () {
             });
         },
         applyMasonry = function () {
+            if ($("html").hasClass("ie8")) {
+                return;
+            }
             var $grid = $('.discover__activities').imagesLoaded().progress(function () {
                 normalizeImages();
                 if (masonryInitialized) {
@@ -68,6 +71,9 @@ $(function () {
     });
     $(window).on('resize', function () {
         normalizeImages();
+        if ($("html").hasClass("ie8")) {
+            return;
+        }
         $('.discover__activities').masonry('layout');
     });
 
