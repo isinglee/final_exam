@@ -1,0 +1,790 @@
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Roboto:300|Montserrat:700);
+@mixin font($name) {
+    @if $name == Roboto {
+        font-family: 'Roboto', Arial, sans-serif;
+        font-weight: 300;
+    }
+
+    @else if $name == Montserrat {
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-weight: 700;
+    }
+
+    @else {
+        @warn "Font mixin supports: Roboto, Montserrat";
+    }
+}
+
+// Colors
+$red: #ff4e50;
+$white: #fff;
+$gray: #666;
+$lightgray: #ccc;
+$text: #333;
+
+// Breakpoints
+$lg: 1440px;
+$md: 960px;
+$sm: 768px;
+$xs: $sm - 1px;
+$min: 320px;
+@mixin bp($class) {
+    @if $class == xs {
+        @media (max-width: $xs) { @content; }
+    }
+
+    @else if $class == sm {
+        @media (min-width: $sm) { @content; }
+    }
+
+    @else if $class == md {
+        @media (min-width: $md) { @content; }
+    }
+
+    @else if $class == lg {
+        @media (min-width: $lg) { @content; }
+    }
+
+    @else {
+        @warn "Breakpoint mixin supports: xs, sm, md, lg";
+    }
+}
+
+// Rows and Blocks
+#row {
+    margin: 0 -10px;
+    clear: both;
+}
+
+#block {
+    float: left;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#clearfix {
+    display: block;
+    content: '';
+    clear: both;
+    float: none;
+}
+
+
+// Reset
+* {
+    margin: 0;
+    padding: 0;
+}
+
+// Styles
+body {
+    color: $text;
+    @include font(Roboto);
+    min-width: $min;
+    overflow-x: hidden;
+}
+
+.container {
+    @extend #clearfix;
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    @include bp(md) {
+        width: $md;
+        margin: 0 auto;
+    }
+}
+
+.header {
+    height: 540px;
+    background: url(../../img/header.jpg);
+    background-position: 50% 50%;
+    background-size: cover;
+    color: $white;
+    @include bp(sm) {
+        height: 700px;
+    }
+
+    &__user {
+        padding: 20px 19px 0 0;
+        text-align: center;
+        font-size: 14px;
+        @include bp(sm) {
+            padding: 38px 39px 0 0;
+            float: right;
+        }
+        @include bp(md) {
+            padding: 38px 1px 0 0;
+        }
+    }
+
+    &__login {
+        @include font(Montserrat);
+        color: $white;
+        text-decoration: none;
+        display: inline-block;
+        padding: 7px 16px;
+        border: 2px solid transparent;
+
+        &:hover {
+            border: 2px solid $white;
+            border-radius: 30px;
+        }
+    }
+
+    &__logo {
+        padding-top: 114px;
+        text-align: center;
+        text-transform: uppercase;
+        @include bp(sm) {
+            padding: 45px 0 0 38px;
+            float: left;
+            letter-spacing: 0.3px;
+        }
+        @include bp(md) {
+            padding: 45px 0 0 0;
+        }
+    }
+
+    &__title {
+        font-size: 21px;
+        @include font(Montserrat);
+    }
+
+    &__texts {
+        padding-top: 26px;
+        text-align: center;
+        @include bp(sm) {
+            padding: 214px 85px 0;
+        }
+        @include bp(md) {
+            padding: 214px 175px 0;
+        }
+    }
+
+    &__slogan {
+        @include font(Montserrat);
+        font-size: 30px;
+        text-transform: uppercase;
+        @include bp(sm) {
+            font-size: 52px;
+        }
+    }
+
+    &__subslogan {
+        font-size: 24px;
+        padding: 24px 30px 0;
+        display: inline-block;
+        @include bp(md) {
+            padding: 23px 30px 0;
+        }
+    }
+
+    &__btn {
+        padding-top: 24px;
+        @include bp(sm) {
+            padding: 43px 4px 0 0;
+        }
+        @include bp(md) {
+            padding: 44px 2px 0 0;
+        }
+    }
+
+    &__link {
+        @include font(Montserrat);
+        font-size: 14px;
+        padding: 11px 50px;
+        border-radius: 30px;
+        background: $red;
+        color: $white;
+        text-decoration: none;
+        @include bp(sm) {
+            padding: 11px 22px;
+        }
+        @include bp(md) {
+            padding: 11px 24px;
+        }
+    }
+}
+
+.howto {
+    padding-top: 34px;
+    @include bp(sm) {
+        padding-top: 94px;
+    }
+
+    &__title {
+        @include font(Montserrat);
+        font-size: 22px;
+        text-align: center;
+        @include bp(sm) {
+            padding-left: 8px;
+        }
+        @include bp(md) {
+            padding: 0px 3px 0 0;
+        }
+    }
+
+    &__blocks {
+        @extend #row;
+        padding-top: 5px;
+        @include bp(sm) {
+            padding-top: 23px;
+        }
+
+        &::after {
+            @extend #clearfix;
+        }
+    }
+
+    &__block {
+        @extend #block;
+        width: 100%;
+        height: 250px;
+        overflow: hidden;
+        padding-top: 10px;
+        @include bp(sm) {
+            width: 33.3333%;
+            height: 410px;
+        }
+    }
+
+    &__slider {
+        height: 240px;
+        position: relative;
+        @include bp(sm) {
+            height: 400px;
+        }
+    }
+
+    &__slides {
+        width: 100%;
+        height: 240px;
+        position: relative;
+        @include bp(sm) {
+            height: 400px;
+        }
+    }
+
+    &__prev, &__next {
+        position: absolute;
+        width: 33%;
+        top: 0;
+        bottom: 0;
+        transition: 0.5s;
+        cursor: pointer;
+        display: none;
+        @include bp(sm) {
+            display: block;
+        }
+        @include bp(md) {
+            width: 70px;
+        }
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    &__prev {
+        left: 0;
+    }
+
+    &__next {
+        right: 0;
+    }
+
+    &__prev_icon, &__next_icon {
+        background: url(../../img/sprites.png);
+        width: 30px;
+        height: 55px;
+        position: absolute;
+        @include bp(sm) {
+            top: 40px;
+        }
+        @include bp(md) {
+            top: 153px;
+        }
+    }
+
+    &__prev_icon {
+        left: 20px;
+        background-position: 0 -18px;
+    }
+
+    &__next_icon {
+        right: 20px;
+        background-position: -42px -18px ;
+    }
+
+    &__slide {
+        background-size: cover;
+        background-position: 50% 50%;
+        height: 240px;
+        position: absolute;
+        border-radius: 5px;
+        padding: 0 20px;
+        @include bp(sm) {
+            height: 400px;
+        }
+    }
+
+    &__step {
+        padding: 67px 0 0 2px;
+        @include bp(sm) {
+            padding: 211px 0 0;
+        }
+        @include bp(md) {
+            padding: 229px 0 0 1px;
+        }
+    }
+
+    &__step_title {
+        background: $red;
+        text-transform: uppercase;
+        padding: 4px 10px 4px 14px;
+        border-radius: 15px;
+        font-size: 10px;
+        color: $white;
+        letter-spacing: 2.4px;
+    }
+
+    &__subtitle {
+        @include font(Montserrat);
+        font-size: 22px;
+        padding-top: 19px;
+        color: $white;
+        line-height: 28px;
+        letter-spacing: 1.3px;
+        text-shadow: 0 0 5px #000;
+        @include bp(sm) {
+            padding-top: 20px;
+            letter-spacing: 1.1px;
+            margin-left: -1px;
+        }
+        @include bp(md) {
+            padding-top: 19px;
+        }
+    }
+
+    &__text {
+        padding-top: 13px;
+        font-size: 15px;
+        color: $lightgray;
+        line-height: 16px;
+        text-shadow: 0 0 5px #000;
+        @include bp(sm) {
+            padding-top: 12px;
+            font-size: 13px;
+            margin-left: -1px;
+            letter-spacing: 0.3px;
+        }
+    }
+}
+
+.meet {
+    padding-top: 34px;
+    @include bp(sm) {
+        padding-top: 98px;
+    }
+    @include bp(md) {
+        padding-top: 97px;
+    }
+
+    &__title {
+        @include font(Montserrat);
+        font-size: 22px;
+        text-align: center;
+        padding-right: 5px;
+        line-height: 26px;
+        @include bp(md) {
+            padding-right: 3px;
+        }
+    }
+
+    &__partners {
+        @extend #row;
+        margin-top: -12px;
+        @include bp(sm) {
+            margin-top: -25px;
+            padding: 0px 127px 0;
+        }
+        @include bp(md) {
+            margin-top: -25px;
+            padding: 0;
+        }
+
+        &::after {
+            @extend #clearfix;
+        }
+    }
+
+    &__partner {
+        @extend #block;
+        width: 100%;
+        padding-top: 27px;
+        text-align: center;
+        @include bp(sm) {
+            padding-top: 57px;
+            width: 50%;
+        }
+        @include bp(md) {
+            padding-top: 57px;
+            width: 25%;
+        }
+    }
+
+    &__thumbnail {
+        width: 120px;
+        margin: 0 auto;
+        padding-left: 2px;
+        position: relative;
+    }
+
+    &__overlay {
+        width: 120px;
+        height: 120px;
+        border-radius: 120px;
+        overflow: hidden;
+    }
+
+    &__img {
+        position: relative;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__category {
+        position: absolute;
+        bottom: -4px;
+        right: -4px;
+        width: 40px;
+        height: 40px;
+        border: 4px solid $white;
+        border-radius: 40px;
+        box-sizing: border-box;
+        background: $red;
+
+        &_icon {
+            display: block;
+            margin: 7px;
+            width: 18px;
+            height: 18px;
+            background: url(../../img/sprites.png);
+        }
+
+        &--cup {
+            background: #1cd7ad;
+        }
+        &--cup &_icon {
+            background-position: -18px 0;
+        }
+
+        &--bottle {
+            background: #ffa507;
+        }
+        &--bottle &_icon {
+            background-position: -36px 0;
+        }
+
+        &--plane {
+            background: #4e73db;
+        }
+        &--plane &_icon {
+            background-position: -54px 0;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+    }
+
+    &__name {
+        @include font(Montserrat);
+        font-size: 14px;
+        color: $text;
+        padding-top: 17px;
+        @include bp(md) {
+            padding: 18px 0 0;
+        }
+    }
+
+    &__description {
+        display: block;
+        padding: 13px 40px 0;
+        color: $gray;
+        line-height: 17px;
+        letter-spacing: 0.1px;
+        font-size: 14px;
+        @include bp(sm) {
+            padding: 13px 8px 0;
+        }
+        @include bp(md) {
+            padding: 13px 0 0;
+        }
+    }
+
+    &__more {
+        padding: 25px 2px 0 0;
+        text-align: center;
+        @include bp(sm) {
+            padding: 35px 2px 0 0;
+        }
+        @include bp(md) {
+            padding: 35px 0 0 0;
+        }
+    }
+
+    &__more_link {
+        display: inline-block;
+        @include font(Montserrat);
+        font-size: 14px;
+        color: $red;
+        border: 2px solid $red;
+        padding: 9px 72px;
+        border-radius: 30px;
+        text-decoration: none;
+        @include bp(sm) {
+            padding: 9px 28px;
+        }
+    }
+}
+
+.discover {
+    padding-top: 35px;
+    @include bp(sm) {
+        padding-top: 97px;
+    }
+
+    &__title {
+        @include font(Montserrat);
+        font-size: 22px;
+        text-align: center;
+        line-height: 26px;
+        @include bp(md) {
+            padding-right: 3px;
+        }
+    }
+
+    &__activities {
+        margin-bottom: 10px;
+        @include bp(sm) {
+            padding-top: 27px;
+        }
+
+        &::after {
+            @extend #clearfix;
+        }
+    }
+
+    &__activity {
+        float: left;
+        padding-top: 6px;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    &__sizer {
+        width: 100%;
+        @include bp(sm) {
+            width: 33.3333%;
+        }
+    }
+
+    &__image {
+        position: relative;
+        vertical-align: middle;
+    }
+
+    &__img {
+        border-radius: 5px;
+    }
+
+    &__link {
+        @include font(Montserrat);
+        font-size: 22px;
+        color: $white;
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-decoration: none;
+    }
+
+    &__search {
+        padding: 34px 9px 0;
+        text-align: center;
+        @include bp(sm) {
+            padding: 92px 9px 0;
+        }
+    }
+
+    &__form {
+        font-size: 18px;
+    }
+
+    &__text {
+        display: inline-block;
+        padding-top: 11px;
+        @include bp(sm) {
+            padding: 31px 0 22px;
+            display: block;
+        }
+    }
+
+    &__input {
+        border: 1px solid $lightgray;
+        border-radius: 3px;
+        margin-top: 15px;
+        padding: 11px 14px;
+        display: inline-block;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 14px;
+        letter-spacing: -0.2px;
+        @include bp(sm) {
+            width: 240px;
+        }
+    }
+
+    &__button {
+        @include font(Montserrat);
+        font-size: 14px;
+        color: $white;
+        background: $red;
+        border-radius: 30px;
+        margin-top: 10px;
+        padding: 11px;
+        border: 0;
+        display: inline-block;
+        width: 100%;
+        box-sizing: border-box;
+        @include bp(sm) {
+            width: 160px;
+            margin-left: 5px;
+        }
+    }
+}
+
+.footer {
+    margin-top: 40px;
+    border-top: 4px solid $red;
+    text-align: center;
+    padding-bottom: 15px;
+    @include bp(sm) {
+        text-align: left;
+        margin-top: 100px;
+    }
+
+    &__columns {
+        @extend #row;
+        padding-top: 0px;
+
+        &::after {
+            @extend #clearfix;
+        }
+    }
+
+    &__column {
+        @extend #block;
+        width: 100%;
+        padding-top: 0px;
+        text-align: center;
+        @include bp(sm) {
+            width: 25%;
+            padding-top: 18px;
+            text-align: left;
+        }
+    }
+
+    &__company {
+        @include bp(sm) {
+            padding-left: 59px;
+        }
+        @include bp(md) {
+            padding-left: 0px;
+            margin-left: -5px;
+        }
+    }
+
+    &__partners {
+        @include bp(sm) {
+            padding-left: 38px;
+        }
+        @include bp(md) {
+            padding-left: 0;
+            margin-left: -85px;
+        }
+    }
+
+    &__logo {
+        @include font(Montserrat);
+        font-size: 17px;
+        color: $red;
+        text-transform: uppercase;
+        padding-top: 16px;
+        @include bp(sm) {
+            padding: 17px 0 0 29px;
+        }
+        @include bp(md) {
+            padding: 17px 0 0 0;
+        }
+    }
+
+    &__title {
+        @include font(Montserrat);
+        font-size: 14px;
+        padding-top: 11px;
+        @include bp(sm) {
+            padding: 18px 0 0 5px;
+        }
+    }
+
+    &__menu {
+        padding-top: 1px;
+        list-style: none;
+        @include bp(sm) {
+            padding-top: 10px;
+        }
+    }
+
+    &__el {
+        display: inline-block;
+        padding: 1px 5px;
+        font-size: 14px;
+        @include bp(sm) {
+            display: block;
+            padding: 3px 5px;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $gray;
+    }
+
+    &__copyright {
+        @include font(Montserrat);
+        padding-top: 12px;
+        text-transform: uppercase;
+        font-size: 10px;
+        letter-spacing: 0.8px;
+        color: $lightgray;
+        @include bp(sm) {
+            padding: 20px 29px 0;
+            text-align: right;
+        }
+        @include bp(md) {
+            padding: 18px 0 0;
+        }
+    }
+
+    &__areto {
+        margin-top: 7px;
+        width: 112px;
+    }
+}
